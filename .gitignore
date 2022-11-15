@@ -1,0 +1,6 @@
+env.local
+logs/**
+*.zip
+*.gz
+*.bz2
+*.sql

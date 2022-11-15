@@ -1,0 +1,16 @@
+---
+applications:
+- name: nrweb-bp
+  buildpacks:
+    - php_buildpack
+  memory: 128M
+  disk_quota: 5G
+  timeout: 180
+  instances: 1
+  #random-route: true
+  random-route: false
+  no-route: true
+  env:
+    NEWRELIC_LICENSE: zzzyyysss
+  # services:
+  #   - dynatrace
