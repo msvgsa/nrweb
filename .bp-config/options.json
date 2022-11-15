@@ -1,0 +1,8 @@
+{
+    "PHP_VERSION": "{PHP_80_LATEST}",
+    "WEB_SERVER": "nginx",
+    "WEBDIR": "web",
+    "ADDITIONAL_PREPROCESS_CMDS": [
+        "$HOME/phpset-nrweb-bp.sh"
+    ]
+}
