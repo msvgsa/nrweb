@@ -1,6 +1,14 @@
+
+### Ignore these specific files
 env.local
-logs/**
 *.zip
 *.gz
 *.bz2
 *.sql
+php.ini
+
+# exclude anything from logs/
+logs/*
+
+# ... except this file
+!logs/.gitkeep
