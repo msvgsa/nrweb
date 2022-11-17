@@ -13,10 +13,6 @@ Contents:
 
 ### Test in any space belonging to the security group 'public_networks_egress'
 
-
 1. Deploy the app w/ cf push
 2. Create some traffic w/ cf ssh nrweb-bp -c app/make-traffic.sh
 3. I would expect to see some activity in my NR dashboard at this point, but I do not see any.
-
-
-

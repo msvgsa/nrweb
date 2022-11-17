@@ -14,6 +14,7 @@ set-space-bp:
 
 test-space-bp:
 	-cf ssh $(BP_APP) -c "app/make-traffic.sh"
+	sleep 4
 	-cf logs $(BP_APP) --recent | tail -15
 
 ssh-app-bp:
