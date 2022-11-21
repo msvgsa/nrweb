@@ -13,6 +13,10 @@ BP_ORG=sandbox-gsa
 set-space-bp:
 	cf target -s $(BP_SPACE)
 
+set-security-groups-bp: set-space-bp
+	cf bind-security-group public_networks_egress $(BP_ORG) --lifecycle running --space $(BP_SPACE)
+	cf bind-security-group public_networks_egress $(BP_ORG) --lifecycle staging --space $(BP_SPACE)
+
 test-app-bp: set-space-bp
 	-cf security-groups | grep $(BP_SPACE)
 	-cf ssh $(BP_APP) -c "app/make-traffic.sh"
@@ -22,7 +26,7 @@ test-app-bp: set-space-bp
 	-cf ssh $(BP_APP) -c "wget https://www.newrelic.com"
 	-cf ssh $(BP_APP) -c "ls -l index.*"
 
-get-newrelic-logs-bp: 
+get-newrelic-logs-bp:
 	-cf ssh $(BP_APP) -c "cat app/logs/newrelic-daemon.log app/logs/newrelic.log"
 
 ssh-app-bp: set-space-bp
@@ -31,13 +35,11 @@ ssh-app-bp: set-space-bp
 delete-app-bp: set-space-bp
 	-cf delete -r -f $(BP_APP)
 
-deploy-app-bp: set-space-bp
-	cf bind-security-group public_networks_egress $(BP_ORG) --lifecycle running --space $(BP_SPACE)
-	cf bind-security-group public_networks_egress $(BP_ORG) --lifecycle staging --space $(BP_SPACE)
+deploy-app-bp: set-security-groups-bp
 	cf push
 	cf apps
 	cf routes
-	
+
 play-the-waiting-game:
 	echo "Sleeping for 3 minutes to allow the app to settle down"
 	sleep 300
