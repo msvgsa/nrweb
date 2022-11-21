@@ -41,7 +41,7 @@ deploy-app-bp: set-security-groups-bp
 	cf routes
 
 play-the-waiting-game:
-	echo "Sleeping for 3 minutes to allow the app to settle down"
+	echo "Sleeping for 5 minutes to allow the app to settle down"
 	sleep 300
 
 full-test: delete-app-bp deploy-app-bp play-the-waiting-game test-app-bp get-newrelic-logs-bp

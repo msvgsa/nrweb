@@ -31,5 +31,8 @@ Contents:
 3. ... then, Wait about 5 minutes
 
 4. ... and finally, create some traffic then look at newrelic.log and newrelic-daemon.log:
-    a. make test-app-bp
-    c. make get-newrelic-logs-bp | tee logs/my.log
+    a. make test-app-bp get-newrelic-logs-bp | tee logs/my.log
+
+Note: This seems to consistently fail to send data to newrelic when using the "full-test" target, which waits 5 minutes
+after deployment to run the first test.   However, subsquent tests (e.g running step 4a) usually work after the first 
+one fails.
